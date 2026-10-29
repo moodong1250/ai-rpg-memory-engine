@@ -1,0 +1,22 @@
+import os
+
+from dotenv import load_dotenv
+from google import genai
+
+
+load_dotenv()
+
+api_key = os.getenv(
+    "GEMINI_API_KEY"
+)
+
+client = genai.Client(
+    api_key=api_key
+)
+
+response = client.interactions.create(
+    model="gemini-3.8-flash",
+    input="안녕. 한 문장으로 인사해줘."
+)
+
+print(response.output_text)
